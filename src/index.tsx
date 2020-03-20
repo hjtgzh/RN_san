@@ -17,6 +17,7 @@ const App = () => (
       <ScrollView>
         <View>
           <Text>{obj?.bol ? 111 : 222}</Text>
+          <Text>测试</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
