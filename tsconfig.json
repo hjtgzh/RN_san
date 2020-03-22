@@ -12,9 +12,8 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "tests": ["tests/*"],
-      "@components/*": ["src/components/*"],
+      "@/*": ["./src/*"],
+      "@screens/*": ["./src/screens/*"],
     },
   },
   "exclude": [
