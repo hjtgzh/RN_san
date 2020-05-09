@@ -1,6 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser', // 在ts项目中必须执行解析器为@typescript-eslint/parser，才能正确的检测和规范TS代码
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'react-hooks'],
   extends: [
     'plugin:react/recommended', // 为了检测和规范React代码的书写必须安装插件eslint-plugin-react
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
@@ -24,7 +24,7 @@ module.exports = {
     'no-unused-vars': 'error',
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/camelcase': 'off',
@@ -33,5 +33,7 @@ module.exports = {
     'react/no-deprecated': 'warn',
     'react/prop-types': 'off',
     '@typescript-eslint/interface-name-prefix': 'off', // 关闭interface命名开头为 I 时的警告
+    'react-hooks/rules-of-hooks': 'error', // 检查 Hook 的规则
+    'react-hooks/exhaustive-deps': 'warn', // 检查 effect 的依赖
   },
 };

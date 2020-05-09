@@ -10,6 +10,8 @@
     "noEmit": true,
     "strict": true,
     "target": "esnext",
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
