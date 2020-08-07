@@ -4,7 +4,7 @@
  * @作者: 陈杰
  * @LastEditors: 黄建停
  * @Date: 2019-04-07 14:46:34
- * @LastEditTime: 2020-05-08 17:14:11
+ * @LastEditTime: 2020-08-07 19:17:43
  */
 import * as qs from 'qs';
 import Axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
@@ -135,6 +135,7 @@ axios.interceptors.request.use(
   async config => {
     const { headers, ...rest } = config;
     // const accessToken = await getToken();
+    // const accessToken = 'e3dc4fa8f6961de9b012b3433605e97b';
     return {
       ...rest,
       headers: {

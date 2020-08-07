@@ -4,11 +4,11 @@
  * @作者: 黄建停
  * @Date: 2019-12-31 18:18:54
  * @LastEditors: 黄建停
- * @LastEditTime: 2020-05-09 10:20:38
+ * @LastEditTime: 2020-08-07 19:23:46
  */
 
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
 import { View, Text, Input, Item } from 'native-base';
 import { size, colors } from '@/config';
 
@@ -29,10 +29,11 @@ interface IInputNumberProps {
   onChange?: (value: string) => void;
   /**是否可以为0 */
   isZero?: boolean;
+  style?: StyleProp<ViewStyle>;
 }
 
 export default function InputNumber(props: IInputNumberProps) {
-  const { value, min, max, onChange, isZero } = props;
+  const { value, min, max, onChange, isZero, style } = props;
 
   const [inputValue, setInputValue] = useState(value || '0');
 
@@ -83,10 +84,10 @@ export default function InputNumber(props: IInputNumberProps) {
     if (min || min === 0) {
       setInputValue(`${min}`);
     }
-  }, []);
+  }, [value, min]);
 
   return (
-    <View style={styles.countWrap}>
+    <View style={[styles.countWrap, style]}>
       <TouchableOpacity onPress={handleReduce}>
         <Text style={[styles.countCommon, styles.minus]}>-</Text>
       </TouchableOpacity>

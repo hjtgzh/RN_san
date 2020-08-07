@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { StyleProvider } from 'native-base';
 import getTheme from '../native-base-theme/components';
@@ -11,11 +11,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Home from '@/screens/home';
 import GoodsDetail from '@/screens/home/goodsDetail';
+// import BuyNow from '@/screens/home/buyNow';
+// import ConfirmPayment from '@/screens/home/confirmPayment';
 import Details from '@screens/details';
 import Profile from '@screens/profile';
 import Settings from '@screens/settings';
 import News from '@screens/news';
 import colors from '@/config/colors';
+import { navigationRef, isMountedRef } from './RootNavigation';
 
 console.disableYellowBox = true;
 
@@ -74,7 +77,9 @@ function HomeScreen() {
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="HomeTab" component={HomeTabStackScreen} />
       <Stack.Screen name="News" component={News} />
-      <HomeStack.Screen name="GoodsDetail" component={GoodsDetail} />
+      <Stack.Screen name="GoodsDetail" component={GoodsDetail} />
+      {/* <Stack.Screen name="BuyNow" component={BuyNow} /> */}
+      {/* <Stack.Screen name="ConfirmPayment" component={ConfirmPayment} /> */}
     </Stack.Navigator>
   );
 }
@@ -88,18 +93,27 @@ function RootStackScreen() {
   );
 }
 
-const App = () => (
-  <>
-    <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
-    <StyleProvider style={getTheme(material)}>
-      <NavigationContainer>
-        <Drawer.Navigator initialRouteName="HomeScreen">
-          <Drawer.Screen name="HomeDrawer" component={HomeScreen} />
-          <Drawer.Screen name="RootDrawer" component={RootStackScreen} />
-        </Drawer.Navigator>
-      </NavigationContainer>
-    </StyleProvider>
-  </>
-);
+function App() {
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      return;
+    };
+  }, []);
+  return (
+    <>
+      <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
+      <StyleProvider style={getTheme(material)}>
+        <NavigationContainer ref={navigationRef}>
+          <Drawer.Navigator initialRouteName="HomeScreen">
+            <Drawer.Screen name="HomeDrawer" component={HomeScreen} />
+            <Drawer.Screen name="RootDrawer" component={RootStackScreen} />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </StyleProvider>
+    </>
+  );
+}
 
 export default App;

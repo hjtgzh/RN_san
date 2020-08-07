@@ -4,7 +4,7 @@
  * @作者: 黄建停
  * @Date: 2019-11-11 10:16:08
  * @LastEditors: 黄建停
- * @LastEditTime: 2020-05-09 14:23:34
+ * @LastEditTime: 2020-05-09 16:44:09
  */
 
 export const ensureList = ['在线交易', '100%现货', '交易保障', '虚假价格包赔', '一贵就赔', '72小时发货'];
@@ -84,5 +84,25 @@ export const serviceList = [
         detail: '商家承诺买家支付货款后72小时内发货，否则赔付买家',
       },
     ],
+  },
+];
+
+/**支付方式 */
+export const PAY_TYPE = [
+  {
+    id: 1,
+    icon: 'zhifubao',
+    color: '#1890FF',
+    type: '支付宝支付',
+    content: '单笔最高2千～5万',
+    checked: true,
+  },
+  {
+    id: 2,
+    icon: 'weixin',
+    color: '#36C678',
+    type: '微信支付',
+    content: '单笔最高2千～5万',
+    checked: false,
   },
 ];

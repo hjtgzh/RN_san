@@ -4,7 +4,7 @@
  * @作者: 黄建停
  * @Date: 2019-12-17 20:14:10
  * @LastEditors: 黄建停
- * @LastEditTime: 2020-05-09 14:13:52
+ * @LastEditTime: 2020-05-09 16:41:17
  */
 
 import React, { useContext, useState, useEffect, useCallback } from 'react';
@@ -20,6 +20,7 @@ import { HomeStoreContext } from '@/stores/home.store';
 import { useFilter } from '@/hooks/useFilter';
 // import NavigationService from '@/NavigationService';
 import { computedMul } from '@/utils/index';
+import * as RootNavigation from '@/RootNavigation';
 
 const { px } = size;
 // const { addPurchaseOrder } = orderService;
@@ -47,7 +48,7 @@ const initialFilterObject = {
 
 export default observer((props: IPurchaseModalProps) => {
   /* 父级props数据 */
-  const { visible, handleVisible, purchaseId, isBuyNow, onRequestClose } = props;
+  const { visible, handleVisible, purchaseId, isBuyNow, onRequestClose, title } = props;
 
   /* store数据 */
   const store: any = useContext(HomeStoreContext);
@@ -96,13 +97,13 @@ export default observer((props: IPurchaseModalProps) => {
     if (+value < +startingValue) {
       return;
     }
-    // const specification = specificationDTOs.find((item: any) => item.id === activeId) || { id: '' };
+    const specification = specificationDTOs.find((item: any) => item.id === activeId) || { id: '' };
     if (activeId) {
       handleVisible(false);
       if (isBuyNow) {
-        // NavigationService.navigate('BuyNow', {
-        //   orderObj: { ...specification, qunatity: value, shopName, imgUrl: mainImgDTOs[0].imgUrl, title },
-        // });
+        RootNavigation.navigate('BuyNow', {
+          orderObj: { ...specification, qunatity: value, imgUrl: mainImgDTOs[0].imgUrl, title },
+        });
       } else {
         // const result = await addPurchaseOrder({ specificationId: specification && specification.id, qunatity: value });
         // if (result) {

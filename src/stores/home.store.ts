@@ -4,14 +4,14 @@
  * @作者: 黄建停
  * @Date: 2019-12-17 20:24:45
  * @LastEditors: 黄建停
- * @LastEditTime: 2020-05-08 17:22:49
+ * @LastEditTime: 2020-08-07 19:23:55
  */
 import { createContext } from 'react';
 import { observable } from 'mobx';
 import { RefreshState } from '@/components/RefreshListView';
 import { IGoodsListItem, IGoodsDetail } from '@/interfaces/home';
 import { PAGE, TOTAL } from '../services/common';
-import { initGoodsDetail, initShopInfo } from '../services/initData';
+import { initGoodsDetail } from '../services/initData';
 
 export class HomeStore {
   private static instance: HomeStore;
@@ -50,9 +50,5 @@ export class HomeStore {
   // 商品详情
   @observable
   public goodsDetail: IGoodsDetail = initGoodsDetail;
-
-  // 店铺详情
-  @observable
-  public shopInfo = initShopInfo;
 }
 export const HomeStoreContext = createContext(HomeStore.getInstance());

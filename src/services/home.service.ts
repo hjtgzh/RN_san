@@ -4,7 +4,7 @@
  * @作者: 黄建停
  * @Date: 2019-10-29 16:53:00
  * @LastEditors: 黄建停
- * @LastEditTime: 2020-05-09 14:26:57
+ * @LastEditTime: 2020-08-07 19:15:02
  */
 import { HomeStore } from '@/stores/home.store';
 import { action, runInAction } from 'mobx';
@@ -35,6 +35,7 @@ export class HomeService {
    */
   @action
   public getGoodsData = async (params: IGoodsListParams, require = true) => {
+    console.log('params', params);
     runInAction(() => {
       require && (this.store.refreshState = params.refreshState || RefreshState.HeaderRefreshing);
     });
@@ -91,7 +92,7 @@ export class HomeService {
 
   /**清空商品详情 */
   @action
-  public clearGoodsDetail = hashId => {
+  public clearGoodsDetail = (hashId: string) => {
     this.store[`goodsDetail${hashId}`] = initGoodsDetail;
   };
 
